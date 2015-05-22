@@ -1,0 +1,156 @@
+{
+   "edges" : [
+      {
+         "id" : "e0",
+         "source" : "n9",
+         "target" : "n7"
+      },
+      {
+         "id" : "e1",
+         "source" : "n7",
+         "target" : "n5"
+      },
+      {
+         "id" : "e2",
+         "source" : "n7",
+         "target" : "n8"
+      },
+      {
+         "id" : "e3",
+         "source" : "n7",
+         "target" : "n6"
+      },
+      {
+         "id" : "e4",
+         "source" : "n8",
+         "target" : "n5"
+      },
+      {
+         "id" : "e5",
+         "source" : "n8",
+         "target" : "n6"
+      },
+      {
+         "id" : "e6",
+         "source" : "n5",
+         "target" : "n6"
+      },
+      {
+         "id" : "e7",
+         "source" : "n5",
+         "target" : "n4"
+      },
+      {
+         "id" : "e8",
+         "source" : "n6",
+         "target" : "n4"
+      },
+      {
+         "id" : "e9",
+         "source" : "n4",
+         "target" : "n3"
+      },
+      {
+         "id" : "e10",
+         "source" : "n4",
+         "target" : "n1"
+      },
+      {
+         "id" : "e11",
+         "source" : "n3",
+         "target" : "n2"
+      },
+      {
+         "id" : "e12",
+         "source" : "n3",
+         "target" : "n1"
+      },
+      {
+         "id" : "e13",
+         "source" : "n2",
+         "target" : "n1"
+      }
+   ],
+   "nodes" : [
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n0",
+         "label" : "Node n0",
+         "size" : 3,
+         "x" : 154,
+         "y" : 211
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n1",
+         "label" : "Node n1",
+         "size" : 3,
+         "x" : 64,
+         "y" : 101
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n2",
+         "label" : "Node n2",
+         "size" : 3,
+         "x" : 174,
+         "y" : 109
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n3",
+         "label" : "Node n3",
+         "size" : 3,
+         "x" : 79,
+         "y" : 296
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n4",
+         "label" : "Node n4",
+         "size" : 3,
+         "x" : 38,
+         "y" : 180
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n5",
+         "label" : "Node n5",
+         "size" : 3,
+         "x" : 153,
+         "y" : 299
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n6",
+         "label" : "Node n6",
+         "size" : 3,
+         "x" : 130,
+         "y" : 130
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n7",
+         "label" : "Node n7",
+         "size" : 3,
+         "x" : 172,
+         "y" : 6
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n8",
+         "label" : "Node n8",
+         "size" : 3,
+         "x" : 138,
+         "y" : 110
+      },
+      {
+         "color" : "rgb(255, 128, 0)",
+         "id" : "n9",
+         "label" : "Node n9",
+         "size" : 3,
+         "x" : 209,
+         "y" : 19
+      }
+   ]
+}
