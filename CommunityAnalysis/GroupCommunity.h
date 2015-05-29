@@ -104,8 +104,15 @@ string BalancedCommunity(string graphName)
 		}
 	}
 	resultString += "\n";
-	//添加边的
 	//打印边
+	//
+	int communityCount = clusterResult.size();
+	string* communityColors = new string[communityCount];
+	for (int i = 0; i < communityCount; i++)
+	{
+		communityColors[i] = edgeColor[i];
+	}
+	//
 	int count = -1;
 	for (int j = 0; j < m.rows(); j++)
 	{
@@ -114,7 +121,17 @@ string BalancedCommunity(string graphName)
 			if (m(j, k) == 1)
 			{
 				count++;
-				resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
+				//resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
+				// 添加控制边的颜色的代码
+				for (int c = 0; c < communityCount; c++)
+				{
+					if (isInSameCommunity(clusterResult[c], j, k))
+					{
+						string curEdgeColor = communityColors[c];
+						resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + ":"+curEdgeColor+" ";
+					}
+				}
+				
 			}
 
 		}
@@ -193,7 +210,13 @@ string ModularCommunity(string graphName)
 	}
 	resultString += "\n";
 	//添加边的
-	//打印边
+	int communityCount = clusterResult.size();
+	string* communityColors = new string[communityCount];
+	for (int i = 0; i < communityCount; i++)
+	{
+		communityColors[i] = edgeColor[i];
+	}
+	//
 	int count = -1;
 	for (int j = 0; j < A.rows(); j++)
 	{
@@ -202,7 +225,16 @@ string ModularCommunity(string graphName)
 			if (A(j, k) == 1)
 			{
 				count++;
-				resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
+				//添加控制边的颜色的代码
+				for (int c = 0; c < communityCount; c++)
+				{
+					if (isInSameCommunity(clusterResult[c], j, k))
+					{
+						string curEdgeColor = communityColors[c];
+						resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + ":" + curEdgeColor + " ";
+					}
+				}
+				//resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
 			}
 
 		}

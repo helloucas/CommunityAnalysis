@@ -35,5 +35,14 @@
     <ClInclude Include="JsonParse\json\json-forwards.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupCommunity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KMeans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

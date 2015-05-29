@@ -21,6 +21,18 @@ using std::string;
 //预定义几种颜色
 string Color[] = { "rgb(255,0,0)", "rgb(0,255,0)", "rgb(0,0,255)", "rgb(255,255,0)"};
 string NonCommunityColor[] = { "rgb(0,0,0)" };
-string edgeColor = { "rgb(128,128,128)", "rgb(0,128,128)", "rgb(0,0,128)", "rgb(64,255,255)" };
+string edgeColor[] = { "rgb(128,128,128)", "rgb(0,128,128)", "rgb(0,0,128)", "rgb(64,255,255)" };
 
+//判断两个点是否在同一社区里
+bool isInSameCommunity(vector<int> community, int sourceVertex, int targetVertex)
+{
+	bool result = true;
+	vector<int>::iterator iterSource = find(community.begin(), community.end(),sourceVertex);
+	vector<int>::iterator iterTarget = find(community.begin(), community.end(), targetVertex);
+	if (iterSource == community.end() || iterTarget == community.end())
+	{
+		result = false;
+	}
+	return result;
+}
 #endif

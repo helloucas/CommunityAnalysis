@@ -76,7 +76,18 @@ string CliqueToString(int vertexID, vector<int> &clique, MatrixXd& m)
 			if (m(j, k) == 1)
 			{
 				count++;
-				resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
+				// 增加控制边颜色的代码
+				if (isInSameCommunity(clique, j, k))
+				{
+					string edgeInComColor = edgeColor[0];
+					resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + ":" + edgeInComColor+" ";
+				}
+				else
+				{
+					string edgeOutComColor = edgeColor[1];
+					resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + ":" + edgeOutComColor + " ";
+				}
+				
 			}
 			
 		}

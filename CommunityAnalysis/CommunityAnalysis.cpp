@@ -7,7 +7,7 @@ using Eigen::MatrixXd;
 int main(int argc, char* argv[])
 {
 	MatrixXd m;
-	char command='M';
+	char command='G';
 	switch (command)
 	{
 	case 'B':

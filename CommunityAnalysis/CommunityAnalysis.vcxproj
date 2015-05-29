@@ -84,9 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BruteForceClique.h" />
+    <ClInclude Include="GroupCommunity.h" />
     <ClInclude Include="JsonParse\json\json-forwards.h" />
     <ClInclude Include="JsonParse\json\json.h" />
+    <ClInclude Include="KMeans.h" />
     <ClInclude Include="ReadWriteGraph.h" />
+    <ClInclude Include="utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

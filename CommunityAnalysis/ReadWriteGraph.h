@@ -90,6 +90,7 @@ string readGraphToString(string graphFileName)
 	//ÎªÊ²Ã´¼õ1.
 	for (int i = 0; i < sourceNodes.size() ; i++)
 	{
+
 		resultString = resultString + "edge" + std::to_string(i) + ":" + "n" + std::to_string(sourceNodes[i]) + ":" + "n" + std::to_string(targetNodes[i]) + " ";
 	}
 	return resultString;
