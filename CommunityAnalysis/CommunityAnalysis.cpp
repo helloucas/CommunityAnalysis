@@ -1,39 +1,30 @@
 #include <iostream>
 #include "BruteForceClique.h"
-#include "Eigen\dense"
+#include "dense"
 #include "ReadWriteGraph.h"
+#include "GroupCommunity.h"
 using Eigen::MatrixXd;
-int main()
+int main(int argc, char* argv[])
 {
-	//接收邻接矩阵输入
-	/*MatrixXd m;
-	int r;
-	cout << "请输入矩阵的阶数" << endl;
-	cin >> r;
-	m.resize(r, r);
-	cout << "请依次输入矩阵的元素值" << endl;
-	for (int i = 0; i < r; i++)
-	{
-		for (int j = 0; j < r; j++)
-		{
-			cin >> m(i, j);
-		}
-	}
-
-	BruteForceClique(m, 5);*/
-	//std::cout << m << std::endl;
 	MatrixXd m;
-	m = readUnDirectedGraphToMatrix("test.txt");
-	BruteForceClique(m,7);
-	/*for (int i = 0; i < m.rows(); i++)
+	char command='M';
+	switch (command)
 	{
-		for (int j = 0; j < m.cols(); j++)
-		{
-			cout<< m(i, j)<<"  ";
-		}
-		cout << endl;
+	case 'B':
+		cout<<BruteForceClique("test.txt",3);
+		break;
+	case 'G':
+		cout << BalancedCommunity("Figure6.8.txt");
+		break;
+	case 'R':
+		cout << readGraphToString("Figure6.8.txt");
+		break;
+	case 'M':
+		cout << ModularCommunity("Figure6.8.txt");
+		break;
+	default:
+		break;
 	}
-*/
-	readGraphToJson("test.txt", true,"Clique.json");
-	cout << readGraphToString("test.txt");
+	//BruteForceClique(argv[1], atoi(argv[2]));
+	return 0;
 }

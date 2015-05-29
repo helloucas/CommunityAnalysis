@@ -1,16 +1,12 @@
 // 实现Brute-Force Clique Identification 算法
 #ifndef BRUTEFORCECLIQUE_H
 #define BRUTEFORCECLIQUE_H
-#include <stack>
-#include <vector>
-#include <iostream>
-#include "Eigen\dense"
-using Eigen::MatrixXd;
-using namespace std;
+
+#include "utility.h"
 
 vector<int> neighborVertex(int vertexId, MatrixXd & m)
 {
-	assert(m.rows() == m.cols());
+	//assert(m.rows() == m.cols());
 	int c = m.cols();
 	vector<int> neighbors;
 	for (int i = 0; i < c; i++)
@@ -47,8 +43,51 @@ void printVector(vector<int> & v)
 	cout << endl;
 }
 
-vector<int> BruteForceClique(MatrixXd m, int vertexX)
+//Clique to string to visual
+string CliqueToString(int vertexID, vector<int> &clique, MatrixXd& m)
 {
+	//
+	int NodeCount = m.rows();
+	// 打印节点
+	srand(time(NULL));
+	string NonCommColor = NonCommunityColor[0];
+	string CommColor = Color[rand() % 4];
+	string resultString;
+	for (int i = 0; i < NodeCount; i++)
+	{
+		vector<int>::iterator iterFind = find(clique.begin(), clique.end(), i);
+		if (iterFind == clique.end())
+		{
+			resultString = resultString + "n" + std::to_string(i) + ":" + "Node" + std::to_string(i) + ":" + std::to_string(rand() % 300) + ":" + std::to_string(rand() % 300) + ":" + std::to_string(3) + ":" + NonCommColor + " ";
+		}
+		else
+		{
+			resultString = resultString + "n" + std::to_string(i) + ":" + "Node" + std::to_string(i) + ":" + std::to_string(rand() % 300) + ":" + std::to_string(rand() % 300) + ":" + std::to_string(3) + ":" + CommColor + " ";
+		}
+	}
+
+	resultString += "\n";
+	//打印边
+	int count = -1;
+	for (int j = 0; j < NodeCount; j++)
+	{
+		for (int k = j + 1; k < NodeCount; k++)
+		{
+			if (m(j, k) == 1)
+			{
+				count++;
+				resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
+			}
+			
+		}
+	}
+	return resultString;
+}
+
+
+string BruteForceClique(string readFileName, int vertexX)
+{
+	MatrixXd m = readUnDirectedGraphToMatrix(readFileName);
 	stack<vector<int> > CliqueStack;
 	vector<int> clique;
 	clique.push_back(vertexX);
@@ -60,7 +99,7 @@ vector<int> BruteForceClique(MatrixXd m, int vertexX)
 		vector<int> C = CliqueStack.top();
 		CliqueStack.pop();
 		Processed.push_back(C);
-		
+
 		int cSize = C.size();
 		int vLast = C[cSize - 1];
 		//
@@ -88,10 +127,10 @@ vector<int> BruteForceClique(MatrixXd m, int vertexX)
 			maxSize = Processed[j].size();
 		}
 	}
-	cout << maxSize << endl;
-	cout << "maxClique :";
-	printVector(maxClique);
-	return maxClique;
+	// maxClique 生成输出要可视化的字符串
+	//cout << CliqueToString(vertexX, maxClique,  m) << endl;
+	string result = CliqueToString(vertexX, maxClique, m);
+	return result;
 }
 
 #endif
