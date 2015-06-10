@@ -121,6 +121,8 @@ string BruteForceClique(string readFileName, int vertexX)
 			{
 				C.push_back(neighbors[i]);
 				CliqueStack.push(C);
+				//添加pop_back函数
+				C.pop_back();
 			}
 
 		}
@@ -141,6 +143,12 @@ string BruteForceClique(string readFileName, int vertexX)
 	// maxClique 生成输出要可视化的字符串
 	//cout << CliqueToString(vertexX, maxClique,  m) << endl;
 	string result = CliqueToString(vertexX, maxClique, m);
+	// 添加社区节点
+	result += '\n';
+	for (int i = 0; i < maxClique.size(); i++)
+	{
+		result += std::to_string(maxClique[i]) + ",";
+	}
 	return result;
 }
 

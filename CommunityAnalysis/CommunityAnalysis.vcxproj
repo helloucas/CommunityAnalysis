@@ -44,6 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>F:\CommunityAnalysis\CommunityAnalysis\CommunityAnalysis\Eigen;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -65,7 +66,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -80,12 +81,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CommunityAnalysis.cpp" />
-    <ClCompile Include="JsonParse\jsoncpp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BruteForceClique.h" />
+    <ClInclude Include="CliquePercolationMethod.h" />
+    <ClInclude Include="CommunityEvolution.h" />
     <ClInclude Include="GroupCommunity.h" />
-    <ClInclude Include="JsonParse\json\json-forwards.h" />
     <ClInclude Include="JsonParse\json\json.h" />
     <ClInclude Include="KMeans.h" />
     <ClInclude Include="ReadWriteGraph.h" />

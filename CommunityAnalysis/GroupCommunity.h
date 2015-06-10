@@ -4,10 +4,15 @@
 #include "Eigenvalues"
 #include "KMeans.h"
 
+extern void setMatrixValue(MatrixXd m, double value);
+
 // Balanced Communities
 string BalancedCommunity(string graphName)
 {
-	MatrixXd m = readUnDirectedGraphToMatrix(graphName);
+	//MatrixXd m = readUnDirectedGraphToMatrix(graphName);
+	 MatrixXd m = readUnDirectedGraphToMatrixFilter(graphName,99);
+	//cout << m << endl;
+	//cout << m << endl;
 	int row = m.rows();
 	int col = m.cols();
 	assert(col == row);
@@ -40,6 +45,7 @@ string BalancedCommunity(string graphName)
 			}
 		}
 	}
+	//cout << D << endl;
 
 	MatrixXd L = D - m;
 
@@ -91,6 +97,8 @@ string BalancedCommunity(string graphName)
 	{
 		kMeansVector[i].push_back(LEigenVector[i]);
 	}
+	// 在这里添加确定k的值，也就是聚多少类
+	int clusterCount = (int)(log2(row))+1;
 	vector<vector<int> > clusterResult = myKMeans(kMeansVector, 2, 100);
 
 	// 添加节点
@@ -136,13 +144,25 @@ string BalancedCommunity(string graphName)
 
 		}
 	}
+	//
+	resultString += "\n";
+	for (int i = 0; i < clusterResult.size(); i++)
+	{
+		for (int j = 0; j < clusterResult[i].size(); j++)
+		{
+			resultString += std::to_string(clusterResult[i][j]) + ",";
+		}
+		resultString += " ";
+	}
+
 	return resultString;
 }
 
 //Modular Communities
 string ModularCommunity(string graphName)
 {
-	MatrixXd A = readUnDirectedGraphToMatrix(graphName);
+	//MatrixXd A = readUnDirectedGraphToMatrix(graphName);
+	MatrixXd A = readUnDirectedGraphToMatrixFilter(graphName, 100);
 	int row = A.rows();
 	int col = A.cols();
 	assert(row == col);
@@ -195,8 +215,10 @@ string ModularCommunity(string graphName)
 			kMeansVec[i].push_back(eigenVectors.col(positiveIndex[j])(i, 0));
 		}
 	}
-
-	vector<vector<int> > clusterResult = myKMeans(kMeansVec, 2, 100);
+	//
+	int clusterCount = (int)log2(row)+1;
+	//
+	vector<vector<int> > clusterResult = myKMeans(kMeansVec, clusterCount, 100);
 
 	// 添加节点
 	string resultString;
@@ -204,7 +226,7 @@ string ModularCommunity(string graphName)
 	{
 		for (int j = 0; j < clusterResult[i].size(); j++)
 		{
-			string currentCommColor = Color[i];
+			string currentCommColor = Color[i%7];
 			resultString = resultString + "n" + std::to_string(clusterResult[i][j]) + ":" + "Node" + std::to_string(clusterResult[i][j]) + ":" + std::to_string(rand() % 300) + ":" + std::to_string(rand() % 300) + ":" + std::to_string(3) + ":" + currentCommColor + " ";
 		}
 	}
@@ -214,7 +236,7 @@ string ModularCommunity(string graphName)
 	string* communityColors = new string[communityCount];
 	for (int i = 0; i < communityCount; i++)
 	{
-		communityColors[i] = edgeColor[i];
+		communityColors[i] = edgeColor[i%4];
 	}
 	//
 	int count = -1;
@@ -233,12 +255,25 @@ string ModularCommunity(string graphName)
 						string curEdgeColor = communityColors[c];
 						resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + ":" + curEdgeColor + " ";
 					}
+					
 				}
-				//resultString = resultString + "edge" + std::to_string(count) + ":" + "n" + std::to_string(j) + ":" + "n" + std::to_string(k) + " ";
+				
 			}
 
 		}
 	}
+	//
+	resultString += "\n";
+	for (int i = 0; i < clusterResult.size(); i++)
+	{
+		for (int j = 0; j < clusterResult[i].size(); j++)
+		{
+			resultString += std::to_string(clusterResult[i][j]) + ",";
+		}
+		resultString += " ";
+	}
+
+
 	return resultString;
 
 }
